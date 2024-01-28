@@ -1,6 +1,6 @@
 <script>import "../../app.scss";</script><slot></slot>
 <style>
-    html {
-        overflow: hidden;
-    }
 </style>
+<svelte:head>
+    <title>cephas@projects</title>
+</svelte:head>

@@ -1,9 +1,9 @@
 <script>import "../app.scss";</script><slot></slot>
 <style>
-    html {
-        overflow: hidden;
-    }
     :global(body){
         margin-left: 0px;
     }
 </style>
+<svelte:head>
+    <title>cephas@home</title>
+</svelte:head>

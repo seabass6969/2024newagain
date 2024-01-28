@@ -3,6 +3,7 @@
 	import { fade, fly } from "svelte/transition";
 	import Menus from "$lib/Menus.svelte"
 	import { projectlist } from "$lib/projects";
+	import Topnav from "$lib/Topnav.svelte";
 	let menuOpen = false;
 	let delayFinish = false;
     let Mounted = false
@@ -40,24 +41,8 @@
 {/if}
 
 <Menus {menuOpen}/>
-<div class="topnav">
-	{#if Mounted}
-		<button class="Chover HoverTitle link" in:fly={{ duration: 1000, y: -70 }} on:click={() => {window.location = "/"}} >
-			C
-		</button>
-		<button
-			class="Chover link"
-			in:fly={{ duration: 1000, y: -70 }}
-			on:click={menu}
-		>
-			{#if menuOpen}
-				close
-			{:else}
-				menu
-			{/if}
-		</button>
-	{/if}
-</div>
+
+<Topnav on:click={menu} bind:Mounted bind:menuOpen/>
 <div class="bottom">
 	   {#if Cwidth >= 600}
     <button class="stretchButton left" on:click={backProject}></button>
@@ -86,35 +71,6 @@
 
 </div>
 <style lang="scss">
-
-	.topnav {
-		position: absolute;
-		display: flex;
-		top: 0px;
-		width: 100vw;
-		flex: 0 0 100%;
-		justify-content: space-between;
-		max-width: 100%;
-		z-index: 9999;
-	}
-
-	.Chover {
-		margin: 2vw;
-		font-family: "Days One", sans-serif;
-		font-size: 34px;
-	}
-
-	.HoverTitle:hover{
-		transform: scale(1.2);
-		transition: transform 1s;
-	}
-	.link {
-		color: black;
-		text-decoration: none;
-		border: none;
-		background-color: transparent;
-		cursor: pointer;
-	}
 
 .bottom {
     display: grid;

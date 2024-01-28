@@ -6,7 +6,7 @@
 {#if menuOpen == true}
 	<div class="menu">
 		<button
-			class="project nobutton"
+			class="project nobutton hoverbutton"
 			on:click={() => {window.location = "/projects"}}
 			in:fly={{ x: -300, duration: 1000 }}
 			out:fly={{ x: 300, duration: 1000 }}
@@ -18,7 +18,7 @@
 			/>
 		</button>
 		<button
-			class="about reverse nobutton"
+			class="about reverse nobutton hoverbutton"
 			on:click={() => {window.location = "/about"}}
 			in:fly={{ x: 300, duration: 1000 }}
 			out:fly={{ x: -300, duration: 1000 }}
@@ -29,7 +29,7 @@
 			/>About & Skill</button
 		>
 		<button
-			class="project nobutton"
+			class="project nobutton hoverbutton"
 			on:click={() => {window.location = "/contacts"}}
 			in:fly={{ x: -300, duration: 1000 }}
 			out:fly={{ x: 300, duration: 1000 }}>Contact

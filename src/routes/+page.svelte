@@ -3,6 +3,8 @@
 	import { onMount } from "svelte";
 	import { fly, blur, fade } from "svelte/transition";
 	import Menus from "$lib/Menus.svelte"
+	import { maximiseImage, minimiseImage } from "$lib/animation";
+	import Topnav from "$lib/Topnav.svelte";
 	let Mounted = false;
 	const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 	let value = 0;
@@ -73,24 +75,8 @@
 style="background: radial-gradient(circle closest-corner at {screenX}px {screenY}px, rgba(226, 110, 229, 0.5) 0%, rgba(243, 248, 255, 0.8) 66%);"
 ></div>
 <h1 class="centerText">Cephas</h1>
-<div class="topnav">
-	{#if Mounted}
-		<button class="Chover HoverTitle link" in:fly={{ duration: 1000, delay: 2800, y: -70 }} on:click={() => {window.location = "/"}} >
-			C
-		</button>
-		<button
-			class="Chover link"
-			in:fly={{ duration: 1000, delay: 2800, y: -70 }}
-			on:click={menu}
-		>
-			{#if menuOpen}
-				close
-			{:else}
-				menu
-			{/if}
-		</button>
-	{/if}
-</div>
+
+<Topnav on:click={menu} bind:Mounted bind:menuOpen home={true}/>
 <div class="stopoverflow">
 	{#each projectlist as project}
 		{#if Mounted && menuOpen == false && delayFinish}
@@ -105,8 +91,8 @@ style="background: radial-gradient(circle closest-corner at {screenX}px {screenY
 				on:mouseover={hoverd}
 				on:mouseleave={unhoverd}
 				on:focus={() => {}}
-				in:blur={{ duration: 1000, amount: 30 }}
-				out:fade={{ duration: 1000 }}
+				in:maximiseImage={{ duration: 1000 }}
+				out:minimiseImage={{ duration: 1000 }}
 				loading="lazy"
 			/>
 		{/if}
@@ -116,13 +102,6 @@ style="background: radial-gradient(circle closest-corner at {screenX}px {screenY
 <style lang="scss">
 	.laytotop {
 		z-index: 993 !important;
-	}
-	.link {
-		color: black;
-		text-decoration: none;
-		border: none;
-		background-color: transparent;
-		cursor: pointer;
 	}
 	.stopoverflow {
 		overflow: hidden;
@@ -148,11 +127,6 @@ style="background: radial-gradient(circle closest-corner at {screenX}px {screenY
 		transition: transform 2s;
 		transform: scale(120%);
 	}
-	.Chover {
-		margin: 2vw;
-		font-family: "Days One", sans-serif;
-		font-size: 34px;
-	}
 	.backgroundcolor {
 		background-color: aquamarine;
 		top: 0px;
@@ -160,16 +134,6 @@ style="background: radial-gradient(circle closest-corner at {screenX}px {screenY
 		width: 100vw;
 		height: 100vh;
 		z-index: 100;
-	}
-	.topnav {
-		position: absolute;
-		display: flex;
-		top: 0px;
-		width: 100vw;
-		flex: 0 0 100%;
-		justify-content: space-between;
-		max-width: 100%;
-		z-index: 9999;
 	}
 	.background {
 		top: 0px;
@@ -266,10 +230,6 @@ style="background: radial-gradient(circle closest-corner at {screenX}px {screenY
 	:global(body) {
 		margin: 0px;
 		overflow: hidden;
-	}
-	.HoverTitle:hover{
-		transform: scale(1.2);
-		transition: transform 1s;
 	}
 	.secondbackground {
 		width: 100vw;
