@@ -51,7 +51,14 @@
 		@media (max-width: 600px) {
 		font-size: 15vw;
 		}
+		transition: transform 500ms;
+		transform: scale(100%) translateX(0px);
 	}
+	.project:hover {
+		transition: transform 500ms;
+		transform: scale(120%) translateX(100px);
+	}
+
 	.spinningImage {
 		animation: spin 4s infinite linear;
 		width: 5vw;
@@ -88,6 +95,12 @@
 		@media (max-width: 600px) {
 		font-size: 15vw;
 		}
+		transition: transform 500ms;
+		transform: scale(100%) translateX(0);
+	}
+	.about:hover{
+		transform: scale(120%) translateX(-100px);
+		transition: transform 500ms;
 	}
 
 
