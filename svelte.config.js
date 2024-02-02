@@ -13,8 +13,8 @@ const config = {
 			// See below for an explanation of these options
 			pages: 'build',
 			assets: 'build',
-			fallback: undefined,
-			precompress: false,
+			fallback: "404.html",
+			precompress: true,
 			strict: true
 		})
 	}

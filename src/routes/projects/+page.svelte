@@ -123,9 +123,17 @@ font-family: 'IBM Plex Sans', sans-serif;
 	}
 	.left {
 		cursor: url("/lefts.png"), auto;
+background-image: url(../../../left.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 20%;
 	}
 	.right {
 		cursor: url("/rights.png"), auto;
+background-image: url(../../../right.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 20%;
 	}
 	.row {
 		display: grid;
