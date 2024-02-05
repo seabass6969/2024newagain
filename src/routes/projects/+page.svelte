@@ -4,14 +4,17 @@
 	import Menus from "$lib/Menus.svelte"
 	import { projectlist } from "$lib/projects";
 	import Topnav from "$lib/Topnav.svelte";
+	import { haptic } from "$lib/feedback";
 	let menuOpen = false;
 	let delayFinish = false;
     let Mounted = false
     let projectOn = 0
 	function menu() {
 		menuOpen = menuOpen ? false : true;
+		haptic()
 	}
     function nextProject(){
+		haptic()
         if((projectlist.length - 1) == (projectOn)){
             projectOn = 0
         }else{
@@ -19,6 +22,7 @@
         }
     }
     function backProject(){
+		haptic()
         if(projectOn == 0){
             projectOn = projectlist.length - 1
         }else{

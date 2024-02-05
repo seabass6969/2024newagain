@@ -2,11 +2,13 @@
 	import { onMount } from "svelte";
 	import { fade, fly } from "svelte/transition";
 	import Menus from "$lib/Menus.svelte"
+	import { haptic } from "$lib/feedback";
 	let menuOpen = false;
 	let delayFinish = false;
     let Mounted = false
 	function menu() {
 		menuOpen = menuOpen ? false : true;
+		haptic()
 	}
     onMount(()=> {
         Mounted = true

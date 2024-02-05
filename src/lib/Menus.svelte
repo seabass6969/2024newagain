@@ -1,13 +1,15 @@
-<script>
+<script lang="ts">
 	import { fly } from "svelte/transition";
+	import { haptic } from "./feedback";
 
     export let menuOpen = false
+	export let experimental: {x: number, y: number} = {x: 0, y: 0}
 </script>
 {#if menuOpen == true}
 	<div class="menu">
 		<button
 			class="project nobutton hoverbutton"
-			on:click={() => {window.location = "/projects"}}
+			on:click={() => {window.location = "/projects";haptic()}}
 			in:fly={{ x: -300, duration: 1000 }}
 			out:fly={{ x: 300, duration: 1000 }}
 		>
@@ -19,7 +21,7 @@
 		</button>
 		<button
 			class="about reverse nobutton hoverbutton"
-			on:click={() => {window.location = "/about"}}
+			on:click={() => {window.location = "/about",haptic()}}
 			in:fly={{ x: 300, duration: 1000 }}
 			out:fly={{ x: -300, duration: 1000 }}
 			><img
@@ -30,7 +32,7 @@
 		>
 		<button
 			class="project nobutton hoverbutton"
-			on:click={() => {window.location = "/contacts"}}
+			on:click={() => {window.location = "/contacts";haptic()}}
 			in:fly={{ x: -300, duration: 1000 }}
 			out:fly={{ x: 300, duration: 1000 }}>Contact
 			<img

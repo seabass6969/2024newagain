@@ -5,6 +5,7 @@
 	import Menus from "$lib/Menus.svelte"
 	import { maximiseImage, minimiseImage } from "$lib/animation";
 	import Topnav from "$lib/Topnav.svelte";
+	import { haptic } from "$lib/feedback";
 	let Mounted = false;
 	const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 	let value = 0;
@@ -41,6 +42,7 @@
 	}
 	function menu() {
 		menuOpen = menuOpen ? false : true;
+		haptic()
 	}
 	let width = 700;
 	function topScreenAdjuster(num: number) {
