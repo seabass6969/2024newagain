@@ -98,6 +98,8 @@
     align-items: center;
     justify-items: center;
     margin-top: 10vh;
+	margin-left: 2vw;
+	margin-right: 2vw;
 }
 
 	.backgroundcolor {

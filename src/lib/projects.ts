@@ -29,7 +29,7 @@ export const projectlist = [
         src: "/assets/gamedle.webp",
         description:
             "Gamedle is a game title guessing game. Inspire by wordle",
-        source_code: "",
+        source_code: "https://github.com/seabass6969/gamedle",
         pos: 10,
         offset: 0
     },
@@ -37,6 +37,7 @@ export const projectlist = [
         link: "https://sky.cephas.monster",
         src: "/assets/skyblock.webp",
         description: "Skyblock info. Currently unmaintained. 🚧",
+        source_code: "https://github.com/seabass6969/skystatus",
         pos: 30,
         offset: 40
     },

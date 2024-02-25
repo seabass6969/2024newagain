@@ -82,7 +82,6 @@ style="background: radial-gradient(circle closest-corner at {screenX}px {screenY
 <div class="stopoverflow">
 	{#each projectlist as project}
 		{#if Mounted && menuOpen == false && delayFinish}
-			<!-- man city empty seat -->
 			<img
 				src={project.src}
 				alt=""
@@ -190,9 +189,11 @@ style="background: radial-gradient(circle closest-corner at {screenX}px {screenY
 		animation:
 			text 1s ease-in 0.3s,
 			textB 1.5s cubic-bezier(0.9, 0.03, 0.69, 0.22) 1.3s;
+			// textC 0.2s cubic-bezier(0.9, 0.03, 0.69, 0.22) 2.8s;
 		@media (max-width: 600px) {
 			letter-spacing: 2vw;
 		}
+			// top: 200px;
 	}
 	@keyframes text {
 		0% {
@@ -222,11 +223,21 @@ style="background: radial-gradient(circle closest-corner at {screenX}px {screenY
 		color: #B9E6D3;
 			letter-spacing: 0rem;
 			font-size: 15vw;
+			top: 0px;
 		}
 		100% {
 		color: #7ED3B2;
 			letter-spacing: 2vw;
 			font-size: 18vw;
+			top: 0px;
+		}
+	}
+	@keyframes textC {
+		0% {
+			top: 0px;
+		}
+		100% {
+			top: 200px;
 		}
 	}
 	:global(body) {

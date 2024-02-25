@@ -13,16 +13,20 @@
 				{menuOpen == false ? "C" : "C - Home"}
 			</button>
 		<button
-			class="Chover link"
+			class="Chover link menuBtn"
 			in:fly={{ duration: 1000, delay: home ? 2800 : 0, y: -70 }}
 			on:click
+			class:menuBtnS={menuOpen}
 		>
 			{#if menuOpen}
-<span class="material-symbols-outlined HoverTitle menuBtnS" >
+<span class="material-symbols-outlined HoverTitle " >
 add
 </span>
 			{:else}
-<span class="material-symbols-outlined HoverTitle menuBtn">
+<span class="hovertext">
+	Menu
+</span>
+<span class="material-symbols-outlined HoverTitle ">
 add
 </span>
 			{/if}
@@ -30,14 +34,14 @@ add
 	{/if}
 </div>
 <style>
-	.menuBtn {
+	/* .menuBtn {
 		transform: rotate(0deg);
 		transition: transform 0.2s;
 	}
 	.menuBtn:hover {
 		transform: rotate(45deg);
 		transition: transform 0.2s;
-	}
+	} */
 	.menuBtnS {
 		transform: rotate(45deg);
 		transition: transform 0.2s;
@@ -53,6 +57,9 @@ backdrop-filter: blur( 4px );
 -webkit-backdrop-filter: blur( 4px );
 border-radius: 10px;
 border: 1px solid rgba( 255, 255, 255, 0.18 );
+display: flex;
+align-items: center;
+
 	}
 	.menuBtnS {
 background: rgba( 255, 0, 0, 0.4 );
@@ -61,5 +68,12 @@ backdrop-filter: blur( 20px );
 -webkit-backdrop-filter: blur( 20px );
 border-radius: 10px;
 border: 1px solid rgba( 255, 255, 255, 0.18 );
+	}
+	.menuBtn:hover .hovertext{
+		display: none;
+		opacity: 0;
+	}
+	.hovertext {
+		font-size: 20px;
 	}
 </style>
