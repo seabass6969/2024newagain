@@ -69,11 +69,11 @@ backdrop-filter: blur( 20px );
 border-radius: 10px;
 border: 1px solid rgba( 255, 255, 255, 0.18 );
 	}
-	.menuBtn:hover .hovertext{
+	/* .menuBtn:hover .hovertext{
 		display: none;
 		opacity: 0;
-	}
+	} */
 	.hovertext {
-		font-size: 20px;
+		font-size: 25px;
 	}
 </style>

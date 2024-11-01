@@ -5,6 +5,7 @@
 	import { projectlist } from "$lib/projects";
 	import Topnav from "$lib/Topnav.svelte";
 	import { haptic } from "$lib/feedback";
+	import Project from "$lib/Project.svelte";
 	let menuOpen = false;
 	let delayFinish = false;
 	let Mounted = false;
@@ -66,33 +67,10 @@
 			}}
 			out:fly={{ duration: 500, x: 100 * positive_neg, y: 0 }}
 		>
-			<img src={projectlist[projectOn].src} alt="" class="image" />
-			<div class="row">
-				<div class="col">
-					<h2 class="des">
-						<span class="material-symbols-outlined"> info </span> Description:
-					</h2>
-					<span class="desc"
-						>{projectlist[projectOn].description}</span
-					>
-				</div>
-				<div class="col">
-					<a class="desc" href={projectlist[projectOn].link}
-						><h2 class="des">
-							<span class="material-symbols-outlined"> link</span>
-							link:
-						</h2></a
-					>
-				</div>
-				<div class="col">
-					<a class="desc" href={projectlist[projectOn].source_code}
-						><h2 class="des">
-							<span class="material-symbols-outlined"> code</span>
-							code
-						</h2></a
-					>
-				</div>
-			</div>
+			<button class="noborder" on:click={() => window.location = projectlist[projectOn].link}>
+				<img src={projectlist[projectOn].src} alt="" class="image" />
+			</button>
+			<Project projectOn={projectOn}/>
 		</div>
 	{/key}
 	{#if Cwidth >= 600}
@@ -155,10 +133,6 @@
 		align-content: center;
 		justify-items: center;
 	}
-	.des,
-	.desc {
-		font-family: "IBM Plex Sans", sans-serif;
-	}
 	.left {
 		cursor: url("/lefts.png"), auto;
 		background-image: url(../../../left.png);
@@ -181,14 +155,13 @@
 		grid-row-start: 1;
 		grid-row-end: 1;
 	}
-	.row {
-		display: grid;
-		grid-template-columns: auto auto;
-		gap: 10px;
-	}
 	.smallphone {
 		border-style: none;
 		border-color: transparent;
+		background-color: transparent;
+	}
+	.noborder {
+		border-style: none;
 		background-color: transparent;
 	}
 </style>
