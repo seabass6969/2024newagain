@@ -8,8 +8,9 @@
 	import { haptic } from "$lib/feedback";
 	import { flip } from "svelte/animate";
 	import Project from "$lib/Project.svelte";
+	import ProjectPreview from "$lib/ProjectPreview.svelte";
 	const [send, receive] = crossfade({});
-	let received_src = ""
+	let received_src = "";
 
 	let Mounted = false;
 	const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -49,8 +50,9 @@
 		hovering = false;
 	}
 	function mousedown(src: string) {
-		received_src = src
+		received_src = src;
 		clicked = true;
+		haptic();
 	}
 	function mouseup() {
 		// clicked = false;
@@ -76,13 +78,29 @@
 </script>
 
 {#if clicked}
-	<div class="blocker"> 
-		<div class="popups" in:receive={{key: received_src}} out:send={{key: received_src}}>
-			<button class="popupCloseBtn" on:click={() => clicked = false}>
-				<div class="popupClose material-symbols-outlined"> add</div>
+	<div class="blocker">
+		<div
+			class="popups"
+			in:receive={{ key: received_src }}
+			out:send={{ key: received_src }}
+		>
+			<button
+				class="popupCloseBtn"
+				on:click={() => {
+					clicked = false;
+					haptic();
+				}}
+			>
+				<div class="popupClose material-symbols-outlined">add</div>
 			</button>
-			<img class="popupImage" src={received_src} alt="" >
-			<Project projectOn={projectlist.findIndex(value => value.src == received_src)}/>
+			<div class="popupcomponent">
+				<img class="popupImage" src={received_src} alt="" />
+				<ProjectPreview
+					projectOn={projectlist.findIndex(
+						(value) => value.src == received_src
+					)}
+				/>
+			</div>
 		</div>
 	</div>
 {/if}
@@ -114,22 +132,24 @@
 				)}vw; left: {outscreenDetecter(value, project.offset)}vw"
 				on:mouseover={hoverd}
 				on:mouseleave={unhoverd}
-				on:mousedown={() => {mousedown(project.src)}}
+				on:mousedown={() => {
+					mousedown(project.src);
+				}}
 				on:mouseup={mouseup}
 				on:focus={() => {}}
 				in:maximiseImage={{ duration: 1000 }}
 				out:minimiseImage={{ duration: 1000 }}
 			>
-			 {#if clicked==false}
-				<img 
-				class="movingImage"
-				src={project.src}
-				alt=""
-				loading="lazy"
-				in:receive={{key: project.src}}
-				out:send={{key: project.src}}
-				/>
-			{/if}
+				{#if clicked == false}
+					<img
+						class="movingImage"
+						src={project.src}
+						alt=""
+						loading="lazy"
+						in:receive={{ key: project.src }}
+						out:send={{ key: project.src }}
+					/>
+				{/if}
 			</button>
 		{/if}
 	{/each}
@@ -302,7 +322,7 @@
 		position: absolute;
 		z-index: 994;
 	}
-	.blocker{
+	.blocker {
 		position: fixed;
 		width: 100vw;
 		z-index: 999;
@@ -326,7 +346,7 @@
 		width: 70vw;
 		display: grid;
 		grid-template-columns: min-content;
-		grid-template-rows:max-content auto ;
+		grid-template-rows: max-content auto;
 		padding: 10px;
 	}
 	.popupClose {
@@ -340,5 +360,14 @@
 		border-style: none;
 		width: min-content;
 		background-color: transparent;
+	}
+	.popupcomponent {
+		display: grid;
+
+		grid-template-columns: auto;
+		gap: 5px;
+		@media (min-width: 1300px) {
+			grid-template-columns: auto max-content;
+		}
 	}
 </style>
